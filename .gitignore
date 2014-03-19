@@ -1,0 +1,40 @@
+# Basics
+*.py[cod]
+*.pyc
+__pycache__
+
+# Logs
+*.log
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+*.pot
+
+# Pycharm
+.idea
+
+# GIT
+.editorconfig
+.gitattributes
+
+# Vim
+
+*~
+*.swp
+*.swo
+
+# OSX Related
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
