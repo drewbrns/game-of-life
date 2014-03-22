@@ -37,18 +37,22 @@ class GUI(tk.Frame):
         # self.ratio_e.set(self.config['ratio'])            
         self.ratio_e.set(0.4)           
         
-        self.start_button_e = tk.StringVar()
-        self.start_button_e.set('Play')
-        self.start_button = tk.Button(self.options_pane, textvariable=self.start_button_e, command=self.play_game)
-        self.start_button.grid(row=0, column=4,padx=50)
+        spacer = tk.Frame(self.options_pane, height=30, width=75)
+        spacer.grid(row=0, column=4, padx=5)
         
+        self.start_button_text = tk.StringVar()
+        self.start_button = tk.Button(self.options_pane, textvariable=self.start_button_text)
+        self.start_button.grid(row=0, column=5,padx=2)
+        self.start_button_text.set('Start')
         
-    def play_game(self):
-        pass
-  
-                        
-    
-    def setup_game(self, board):
+        self.reset_button = tk.Button(self.options_pane, text='Reset')
+        self.reset_button.grid(row=0, column=6,padx=2)        
+        
+            
+    def setup_screen(self, board):
+        '''
+            Build UI with initial state of the cells 
+        '''
         
         for x in xrange(board.rows):
             for y in xrange(board.cols):
@@ -67,8 +71,6 @@ class GUI(tk.Frame):
                 tag = '{},{}'.format(x,y)
                 
                 self.canvas.create_rectangle(y0, x0, y1, x1, fill=color,tags=tag)
-                
-                
                 
     
     def update_screen(self, board):        
@@ -89,41 +91,3 @@ class GUI(tk.Frame):
               
                 tag = '{},{}'.format(x,y)
                 self.canvas.itemconfigure(tag, fill=color)
-        
-        
-        # print 'update_screen'
-        
-        # self.canvas.delete('all')
-        # 
-        # for row in population:
-        #     
-        #     for cell in row:
-        #     
-        #         x0,y0 = cell.position
-        #         x0 *=10
-        #         y0 *=10
-        #         x1, y1 = x0+10, y0+10
-        #         
-        #         if cell.alive:
-        #             self.canvas.create_rectangle(x0, y0, x1, y1, fill='#000000')
-        #         else:
-        #             self.canvas.create_rectangle(x0, y0, x1, y1, fill='#FFFFFF')
-                    
-        
-    def load_config(self):
-        try:
-            with open(r'config.json','r') as f:
-                return json.load(f)
-        except ValueError:
-            return {'size':100, 'ratio':0.6}
-        except IOError:
-            pass
-        
-    def save_config(self, config):        
-        with open('config.json','w') as f:
-            json.dumps(config,f)
-            f.write(json.dumps(config,f))
-        
-
-        
-        

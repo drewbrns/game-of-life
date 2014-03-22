@@ -18,7 +18,12 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 	* Implement a "previous" button that allows the user to go back to the n (e.g. 10) previous simulation steps.
 	
 	
-#Known Issues
+##Known Issues
 	* Torus of size above 100 x 100 have not been tested.
-	* torus.count_neigbours method is not throughly tested, thus it produces weird results, I'm still working on fixing it.
-	* gameOfThrones.seed method is seeding properly.
+	* gameOfThrones.seed method is notseeding properly.
+	
+
+#To play the game
+
+	*First install all required modules used by this game onto your system by running this command > pip install -r requirements.txt
+	*To begin playing, run the script > python run_game.py

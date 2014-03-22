@@ -23,7 +23,10 @@ class GameOfThrones(object):
         
         self.ui = GUI()
         self.ui.master.title('''Conway's Game of Life''')
-        self.ui.setup_game(self.board)        
+        self.ui.setup_screen(self.board)        
+        self.ui.start_button.configure(command=self.start_game)
+        self.ui.reset_button.configure(command=self.reset_game)
+        self._running = ''        
         # self.seed()
         
     def seed(self):
@@ -77,18 +80,59 @@ class GameOfThrones(object):
         self.board.grid = new_grid       
 
     def animate(self):
+        '''
+        '''
         self.ui.update_screen(self.board)
         self.tick()
-        self.ui.after(200, self.animate)
+        self._running = self.ui.after(200, self.animate)
 
     def run(self):
         '''
             
         '''      
-        self.animate()  
-        self.ui.mainloop()            
+        self.ui.mainloop()
+        
+    def start_game(self):
+        '''
+            Allows the user to start or pause the game.
+        '''
+        button_text = self.ui.start_button_text
+        
+        if button_text.get() == 'Start':
+            self.animate()
+            button_text.set('Pause')
+        else:
+            button_text.set('Start')
+            self.ui.after_cancel(self._running)
+            
+        
+    def reset_game(self):
+        '''
+            Allows the user to stop the game and reset it to it's initial state.
+        '''
+        button_text = self.ui.start_button_text
+        button_text.set('Start')        
+        self.ui.after_cancel(self._running)
+        self.seed() 
+        self.ui.after(0,self.ui.update_screen,self.board)
+        
+        
+        
+    # def load_config(self):
+    #     try:
+    #         with open(r'config.json','r') as f:
+    #             return json.load(f)
+    #     except ValueError:
+    #         return {'size':100, 'ratio':0.6}
+    #     except IOError:
+    #         pass
+    #     
+    # def save_config(self, config):        
+    #     with open('config.json','w') as f:
+    #         json.dumps(config,f)
+    #         f.write(json.dumps(config,f))        
         
 if __name__ == '__main__':
-    goT = GameOfThrones(100,100)
+    goT = GameOfThrones(60,60)
     goT.run()
     
