@@ -4,7 +4,7 @@ from game.torus import Torus
 from game.ui import GUI
 
 
-class GameOfLife(object):
+class GameOfThrones(object):
     
     '''
     Game of Grid
@@ -24,7 +24,7 @@ class GameOfLife(object):
         self.ui = GUI()
         self.ui.master.title('''Conway's Game of Life''')
         self.ui.setup_game(self.board)        
-        self.seed()
+        # self.seed()
         
     def seed(self):
         ''' 
@@ -32,11 +32,30 @@ class GameOfLife(object):
         '''
         population = self.board.grid 
         k = int(self.ratio * self.size[0])
+
         
-        for x in xrange(k):
-            population[x] = [1] * self.size[0]
+        for row in population:
+            
+            # print row
+            # print
+                       
+            for x in xrange(0,k+2,2):
+                row[x] =  1
+                
+            # print row
+                    
+                    
+            
+        random.shuffle(population)
             
         self.board.grid = population                  
+        
+        
+        
+        
+        # from pprint import pprint
+        # pprint(self.board.grid)
+        
                  
     def tick(self):
         '''  
@@ -53,7 +72,7 @@ class GameOfLife(object):
                 neighbours_alive = self.board.count_neighbours(x,y)
                 previous_state = old_grid[y][x]
                 should_live = neighbours_alive == 3 or (neighbours_alive == 2 and previous_state == 1)
-                new_grid[y][x] = should_live
+                new_grid[y][x] = int(should_live)
 
         self.board.grid = new_grid       
 
@@ -62,7 +81,6 @@ class GameOfLife(object):
         self.tick()
         self.ui.after(200, self.animate)
 
-
     def run(self):
         '''
             
@@ -70,11 +88,7 @@ class GameOfLife(object):
         self.animate()  
         self.ui.mainloop()            
         
-
-
-
-
 if __name__ == '__main__':
-    goL = GameOfLife(100,100)
-    goL.run()
+    goT = GameOfThrones(100,100)
+    goT.run()
     

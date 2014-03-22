@@ -66,7 +66,10 @@ class GUI(tk.Frame):
                 x1, y1 = x0+10, y0+10
                 tag = '{},{}'.format(x,y)
                 
-                self.canvas.create_rectangle(x0, y0, x1, y1, fill=color,tags=tag)
+                self.canvas.create_rectangle(y0, x0, y1, x1, fill=color,tags=tag)
+                
+                
+                
     
     def update_screen(self, board):        
         '''

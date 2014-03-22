@@ -19,3 +19,6 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 	
 	
 #Known Issues
+	* Torus of size above 100 x 100 have not been tested.
+	* torus.count_neigbours method is not throughly tested, thus it produces weird results, I'm still working on fixing it.
+	* gameOfThrones.seed method is seeding properly.

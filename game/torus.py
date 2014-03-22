@@ -7,7 +7,8 @@ class Torus(object):
         self.grid = self.populate_grid()
         
     def populate_grid(self):
-        return [[0 for x in xrange(self.rows)] for y in xrange(self.cols)]
+        import random
+        return [[random.randint(0,1) for x in xrange(self.rows)] for y in xrange(self.cols)]
         
     @property
     def rows(self):
@@ -74,4 +75,4 @@ class Torus(object):
         count_neighbours_alive = len(filter(lambda x:x==True, neighbours))
                         
         return count_neighbours_alive
-     
+        
