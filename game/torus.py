@@ -1,7 +1,5 @@
 # /usr/bin/env python
 
-from cell import Cell
-
 class Torus(object):    
     def __init__(self, rows, cols):
         self._rows = rows
@@ -9,9 +7,7 @@ class Torus(object):
         self.grid = self.populate_grid()
         
     def populate_grid(self):
-        # import random
-        # Cell(False)
-        return [[0 for x in range(self.rows)] for y in range(self.cols)]
+        return [[0 for x in xrange(self.rows)] for y in xrange(self.cols)]
         
     @property
     def rows(self):
@@ -28,6 +24,10 @@ class Torus(object):
     @cols.setter    
     def cols(self, cols):
         self._cols = cols
+        
+    def is_alive(self, x, y):
+        c = self.grid[x][y]
+        return c
         
     def count_neighbours(self, x, y):
         '''
@@ -74,59 +74,4 @@ class Torus(object):
         count_neighbours_alive = len(filter(lambda x:x==True, neighbours))
                         
         return count_neighbours_alive
-    
-                
-    def simulate_life(self):
-        '''
-        Returns a new grid which results when the rules of the game are 
-        simultaneously applied to the old grid
-        '''
-        
-        for generation in range(10):
-
-            # new_grid = [[Cell(False) for x in range(self.rows)] for y in range(self.cols)]
-            
-            new_grid = self.populate_grid()
-            
-            for y, row in enumerate(self.grid):
-                for x, c in enumerate(row):
-                    neighbours_alive = self.count_neighbours(x,y)
-                    previous_state = self.grid[y][x]
-                    should_live = neighbours_alive == 3 or (neighbours_alive == 2 and previous_state == 1)
-                    new_grid[y][x] = should_live
-
-            self.grid = new_grid        
-        
-        
-        
-if __name__ == '__main__':
-    t = Torus(5,5)
-    import pprint
-
-    pprint.pprint(t.grid)
-    print 
-    
-    # import random
-    # 
-    # population = t.grid 
-    # 
-    # for row in population:
-    #             
-    #     k = int(0.4 * len(row))
-    # 
-    #     alive = random.sample(list(row), k)
-    #                                         
-    #     for c in alive:
-    #         
-    #         c.alive = True
-    #         
-    #     
-    # t.grid = population
-    # # pprint.pprint(t.grid)
-    # 
-
-
-    t.count_neighbours(4,4)
-  
-    t.simulate_life()
-    
+     
