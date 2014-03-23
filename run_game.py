@@ -1,9 +1,8 @@
-#   /usr/bin/env python
+# /usr/bin/env python
 import random
 from game.torus import Torus
 from game.ui import GUI
 from utility.config import Preferences
-
 
 class GameOfThrones(object):
     
@@ -53,13 +52,11 @@ class GameOfThrones(object):
 
         self.ui.after(0,self.ui.update_screen,self.board)
         
-        
     def seed(self):
         ''' 
             The initial pattern constitutes the seed of the system 
         '''
         self.board.populate_grid(self.ratio)
-        
                  
     def tick(self):
         '''  
@@ -102,7 +99,6 @@ class GameOfThrones(object):
             button_text.set('Start')
             self.ui.after_cancel(self._appstate)
             
-        
     def reset_game(self):
         '''
             Allows the user to stop the game and reset it to it's initial state.

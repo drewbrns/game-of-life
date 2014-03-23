@@ -66,9 +66,9 @@ class GUI(tk.Frame):
                 alive = board.is_alive(x,y)
                 color = ''
                 if alive:
-                    color = 'white'
-                else:
                     color = 'black'
+                else:
+                    color = 'white'
         
                 x0,y0 = x,y
                 x0 *=10
@@ -91,9 +91,9 @@ class GUI(tk.Frame):
                 alive = board.is_alive(x,y)
                 color = ""
                 if alive:
-                    color = "white"
-                else:
                     color = "black"
+                else:
+                    color = "white"
               
                 tag = '{},{}'.format(x,y)
                 self.canvas.itemconfigure(tag, fill=color)
