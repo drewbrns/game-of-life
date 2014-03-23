@@ -48,6 +48,10 @@ class GameOfThrones(object):
         
         self.ui.setup_screen(self.board)
                     
+        p = Preferences()
+        config = {'rows':rows, 'columns':columns, 'ratio':ratio}
+        p.save_config(config)                    
+        
         self.ui.after(0,self.ui.update_screen,self.board)
         
         
@@ -136,16 +140,12 @@ class GameOfThrones(object):
         button_text = self.ui.start_button_text
         button_text.set('Start')        
         self.ui.after_cancel(self._appstate)
-        self.seed() 
-        self.ui.after(0,self.ui.update_screen,self.board)
+        self.seed()
+        self.apply_user_preferences()                  
         
         
 if __name__ == '__main__':
     p = Preferences()
-    rows = p.rows
-    columns = p.columns
-    ratio = p.ratio
-    
-    goT = GameOfThrones(rows,columns,ratio)
-    goT.run()
+    game_of_Thrones = GameOfThrones(p.rows, p.columns, p.ratio)
+    game_of_Thrones.run()
     
