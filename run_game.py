@@ -15,7 +15,6 @@ class GameOfThrones(object):
         4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     
     '''    
-    
     def __init__(self, rows, columns, ratio=0.4):
         self.ratio = ratio
         self.size = (rows, columns)
@@ -40,7 +39,6 @@ class GameOfThrones(object):
         ratio = float(self.ui.ratio_text.get())                
         
         self.size = (rows, columns)
-        
         self.ui.canvas.delete('all')        
         
         self.board = Torus(rows, columns, ratio)
@@ -114,4 +112,3 @@ if __name__ == '__main__':
     p = Preferences()
     game_of_Thrones = GameOfThrones(p.rows, p.columns, p.ratio)
     game_of_Thrones.run()
-    
