@@ -22,30 +22,26 @@ class GUI(tk.Frame):
         self.label_1 = tk.Label(self.toolbar, text='Size')
         self.label_1.grid(row=0,column=0)
         
-        self.row_e = tk.StringVar()
-        self.row_entry = tk.Entry(self.toolbar,width=5,textvariable=self.row_e)
-        self.row_entry.grid(row=0,column=1)
-        self.row_e.set(10)
+        self.rows_text = tk.StringVar()
+        self.rows_entry = tk.Entry(self.toolbar,width=5,textvariable=self.rows_text)
+        self.rows_entry.grid(row=0,column=1)
         
         self.label_2 = tk.Label(self.toolbar, text='x', padx=5)
         self.label_2.grid(row=0,column=2)        
         
-        self.column_e = tk.StringVar()
-        self.column_entry = tk.Entry(self.toolbar,width=5,textvariable=self.column_e)
-        self.column_entry.grid(row=0,column=3)
-        self.column_e.set(10)
+        self.columns_text = tk.StringVar()
+        self.columns_entry = tk.Entry(self.toolbar,width=5,textvariable=self.columns_text)
+        self.columns_entry.grid(row=0,column=3)
         
         spacer = tk.Frame(self.toolbar, height=30, width=15)
         spacer.grid(row=0, column=4, padx=5)        
         
-                
         self.label_3 = tk.Label(self.toolbar, text='Ratio')        
         self.label_3.grid(row=0,column=5)                
         
-        self.ratio_e = tk.StringVar()
-        self.ratio_entry = tk.Entry(self.toolbar,width=5, textvariable=self.ratio_e)
+        self.ratio_text = tk.StringVar()
+        self.ratio_entry = tk.Entry(self.toolbar,width=5, textvariable=self.ratio_text)
         self.ratio_entry.grid(row=0,column=6)    
-        self.ratio_e.set(0.4)           
         
         spacer = tk.Frame(self.toolbar, height=30, width=75)
         spacer.grid(row=0, column=7, padx=5)
@@ -61,7 +57,7 @@ class GUI(tk.Frame):
             
     def setup_screen(self, board):
         '''
-            Build UI with initial state of the cells 
+            Display initial state of grid on the screen 
         '''
         
         for x in xrange(board.rows):
@@ -85,7 +81,7 @@ class GUI(tk.Frame):
     
     def update_screen(self, board):        
         '''
-            Updates the canvas to show the current state of the game.
+            Updates the canvas to show the current state of the grid.
             
             Parameters:
             :board ---- 

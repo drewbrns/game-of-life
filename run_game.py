@@ -2,6 +2,7 @@
 import random
 from game.torus import Torus
 from game.ui import GUI
+from utility.config import Preferences
 
 
 class GameOfThrones(object):
@@ -19,15 +20,36 @@ class GameOfThrones(object):
     def __init__(self, rows, columns, ratio=0.4):
         self.ratio = ratio
         self.size = (rows, columns)
-        self.board = Torus(self.size[0], self.size[0])        
+        self.board = Torus(self.size[0], self.size[1])        
+        self._appstate = ''        
+        self.setup_ui()
+        # self.seed()
         
+    def setup_ui(self):
         self.ui = GUI()
         self.ui.master.title('''Conway's Game of Life''')
         self.ui.setup_screen(self.board)        
         self.ui.start_button.configure(command=self.start_game)
         self.ui.reset_button.configure(command=self.reset_game)
-        self._appstate = ''        
-        # self.seed()
+        self.ui.rows_text.set(self.size[0])
+        self.ui.columns_text.set(self.size[1])
+        self.ui.ratio_text.set(self.ratio)
+        
+    def apply_user_preferences(self):
+        rows = int(self.ui.rows_text.get())
+        columns = int(self.ui.columns_text.get())
+        ratio = float(self.ui.ratio_text.get())                
+        
+        self.size = (rows, columns)
+        
+        self.ui.canvas.delete('all')        
+        
+        self.board = Torus(rows, columns)
+        
+        self.ui.setup_screen(self.board)
+                    
+        self.ui.after(0,self.ui.update_screen,self.board)
+        
         
     def seed(self):
         ''' 
@@ -97,8 +119,9 @@ class GameOfThrones(object):
             Allows the user to start or pause the game.
         '''
         button_text = self.ui.start_button_text
-        
+                
         if button_text.get() == 'Start':
+            self.apply_user_preferences()            
             self.animate()
             button_text.set('Pause')
         else:
@@ -118,6 +141,11 @@ class GameOfThrones(object):
         
         
 if __name__ == '__main__':
-    goT = GameOfThrones(60,60)
+    p = Preferences()
+    rows = p.rows
+    columns = p.columns
+    ratio = p.ratio
+    
+    goT = GameOfThrones(rows,columns,ratio)
     goT.run()
     
