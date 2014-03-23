@@ -25,7 +25,7 @@ class GameOfThrones(object):
         
     def setup_ui(self):
         self.ui = GUI()
-        self.ui.master.title('''Conway's Game of Life''')
+        self.ui.master.title('''Drew's Game of Thrones''')
         self.ui.setup_screen(self.board)        
         self.ui.start_button.configure(command=self.start_game)
         self.ui.reset_button.configure(command=self.reset_game)
