@@ -16,37 +16,47 @@ class GUI(tk.Frame):
         self.canvas = tk.Canvas(self.life_grid,height=270,width=490, borderwidth=1)
         self.canvas.grid(row=0, column=0,padx=5,pady=5)      
         
-        self.options_pane = tk.Frame(None, height=30, width=500)
-        self.options_pane.grid(row=1, column=0,pady=5)
+        self.toolbar = tk.Frame(None, height=30, width=500)
+        self.toolbar.grid(row=1, column=0,pady=5)
         
-        self.label_1 = tk.Label(self.options_pane, text='Size')
+        self.label_1 = tk.Label(self.toolbar, text='Size')
         self.label_1.grid(row=0,column=0)
         
-        self.size_e = tk.StringVar()
-        self.size_entry = tk.Entry(self.options_pane,width=5,textvariable=self.size_e)
-        self.size_entry.grid(row=0,column=1)
-        # self.size_e.set(self.config['size'])
-        self.size_e.set(10)
+        self.row_e = tk.StringVar()
+        self.row_entry = tk.Entry(self.toolbar,width=5,textvariable=self.row_e)
+        self.row_entry.grid(row=0,column=1)
+        self.row_e.set(10)
         
-        self.label_2 = tk.Label(self.options_pane, text='Ratio')        
-        self.label_2.grid(row=0,column=2)                
+        self.label_2 = tk.Label(self.toolbar, text='x', padx=5)
+        self.label_2.grid(row=0,column=2)        
+        
+        self.column_e = tk.StringVar()
+        self.column_entry = tk.Entry(self.toolbar,width=5,textvariable=self.column_e)
+        self.column_entry.grid(row=0,column=3)
+        self.column_e.set(10)
+        
+        spacer = tk.Frame(self.toolbar, height=30, width=15)
+        spacer.grid(row=0, column=4, padx=5)        
+        
+                
+        self.label_3 = tk.Label(self.toolbar, text='Ratio')        
+        self.label_3.grid(row=0,column=5)                
         
         self.ratio_e = tk.StringVar()
-        self.ratio_entry = tk.Entry(self.options_pane,width=5, textvariable=self.ratio_e)
-        self.ratio_entry.grid(row=0,column=3)    
-        # self.ratio_e.set(self.config['ratio'])            
+        self.ratio_entry = tk.Entry(self.toolbar,width=5, textvariable=self.ratio_e)
+        self.ratio_entry.grid(row=0,column=6)    
         self.ratio_e.set(0.4)           
         
-        spacer = tk.Frame(self.options_pane, height=30, width=75)
-        spacer.grid(row=0, column=4, padx=5)
+        spacer = tk.Frame(self.toolbar, height=30, width=75)
+        spacer.grid(row=0, column=7, padx=5)
         
         self.start_button_text = tk.StringVar()
-        self.start_button = tk.Button(self.options_pane, textvariable=self.start_button_text)
-        self.start_button.grid(row=0, column=5,padx=2)
+        self.start_button = tk.Button(self.toolbar, textvariable=self.start_button_text)
+        self.start_button.grid(row=0, column=8,padx=2)
         self.start_button_text.set('Start')
         
-        self.reset_button = tk.Button(self.options_pane, text='Reset')
-        self.reset_button.grid(row=0, column=6,padx=2)        
+        self.reset_button = tk.Button(self.toolbar, text='Reset')
+        self.reset_button.grid(row=0, column=9,padx=2)        
         
             
     def setup_screen(self, board):
