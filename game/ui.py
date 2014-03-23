@@ -2,12 +2,14 @@
 
 import Tkinter as tk
 
+
 class GUI(tk.Frame):
+
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.grid() 
         self.create_widgets()
-        
+
     def create_widgets(self):
         self.life_grid = tk.Frame(None, height=300, width=500)
         self.life_grid.grid(row=0, column=0)
@@ -55,7 +57,7 @@ class GUI(tk.Frame):
         
     def setup_screen(self, board):
         '''
-            Display initial state of grid on the screen 
+        Display initial state of grid on the screen 
         '''
         for x in xrange(board.rows):
             for y in xrange(board.cols):
@@ -77,10 +79,10 @@ class GUI(tk.Frame):
                 
     def update_screen(self, board):        
         '''
-            Updates the canvas to show the current state of the grid.
+        Updates the canvas to show the current state of the grid.
             
-            Parameters:
-            :board ---- 
+        Parameters:
+        :board ---- 
         '''
         for x in xrange(board.rows):
             for y in xrange(board.cols):
@@ -93,3 +95,4 @@ class GUI(tk.Frame):
               
                 tag = '{},{}'.format(x,y)
                 self.canvas.itemconfigure(tag, fill=color)
+
