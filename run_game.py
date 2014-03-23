@@ -20,10 +20,10 @@ class GameOfThrones(object):
     def __init__(self, rows, columns, ratio=0.4):
         self.ratio = ratio
         self.size = (rows, columns)
-        self.board = Torus(self.size[0], self.size[1])        
+        self.board = Torus(self.size[0], self.size[1], self.ratio)        
         self._appstate = ''        
         self.setup_ui()
-        # self.seed()
+        self.seed()
         
     def setup_ui(self):
         self.ui = GUI()
@@ -44,14 +44,13 @@ class GameOfThrones(object):
         
         self.ui.canvas.delete('all')        
         
-        self.board = Torus(rows, columns)
-        
+        self.board = Torus(rows, columns, ratio)
         self.ui.setup_screen(self.board)
                     
         p = Preferences()
         config = {'rows':rows, 'columns':columns, 'ratio':ratio}
         p.save_config(config)                    
-        
+
         self.ui.after(0,self.ui.update_screen,self.board)
         
         
@@ -59,31 +58,7 @@ class GameOfThrones(object):
         ''' 
             The initial pattern constitutes the seed of the system 
         '''
-        population = self.board.grid 
-        k = int(self.ratio * self.size[0])
-
-        
-        for row in population:
-            
-            # print row
-            # print
-                       
-            for x in xrange(0,k+2,2):
-                row[x] =  1
-                
-            # print row
-                    
-                    
-            
-        random.shuffle(population)
-            
-        self.board.grid = population                  
-        
-        
-        
-        
-        # from pprint import pprint
-        # pprint(self.board.grid)
+        self.board.populate_grid(self.ratio)
         
                  
     def tick(self):
@@ -94,7 +69,7 @@ class GameOfThrones(object):
             simultaneously applied to the old grid
         '''
         old_grid = self.board.grid            
-        new_grid = self.board.populate_grid()
+        new_grid = self.board.populate_grid(self.ratio)
         
         for y, row in enumerate(old_grid):
             for x, c in enumerate(row):
@@ -106,16 +81,11 @@ class GameOfThrones(object):
         self.board.grid = new_grid       
 
     def animate(self):
-        '''
-        '''
         self.ui.update_screen(self.board)
         self.tick()
         self._appstate = self.ui.after(200, self.animate)
 
     def run(self):
-        '''
-            
-        '''      
         self.ui.mainloop()
         
     def start_game(self):
