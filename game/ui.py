@@ -33,7 +33,7 @@ class GUI(tk.Frame):
         self.columns_entry = tk.Entry(self.toolbar,width=5,textvariable=self.columns_text)
         self.columns_entry.grid(row=0,column=3)
         
-        spacer = tk.Frame(self.toolbar, height=30, width=15)
+        spacer = tk.Frame(self.toolbar, height=30, width=5)
         spacer.grid(row=0, column=4, padx=5)        
         
         self.label_3 = tk.Label(self.toolbar, text='Ratio')        
@@ -43,16 +43,16 @@ class GUI(tk.Frame):
         self.ratio_entry = tk.Entry(self.toolbar,width=5, textvariable=self.ratio_text)
         self.ratio_entry.grid(row=0,column=6)    
         
-        spacer = tk.Frame(self.toolbar, height=30, width=75)
-        spacer.grid(row=0, column=7, padx=5)
+        self.reset_button = tk.Button(self.toolbar, text='Reset')
+        self.reset_button.grid(row=0, column=7,padx=5)          
+        
+        spacer = tk.Frame(self.toolbar, height=30, width=85)
+        spacer.grid(row=0, column=8, padx=2)
         
         self.start_button_text = tk.StringVar()
         self.start_button = tk.Button(self.toolbar, textvariable=self.start_button_text)
-        self.start_button.grid(row=0, column=8,padx=2)
+        self.start_button.grid(row=0, column=9,padx=2)
         self.start_button_text.set('Start')
-        
-        self.reset_button = tk.Button(self.toolbar, text='Reset')
-        self.reset_button.grid(row=0, column=9,padx=2)        
         
             
     def setup_screen(self, board):

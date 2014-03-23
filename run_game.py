@@ -50,7 +50,7 @@ class GameOfThrones(object):
         config = {'rows':rows, 'columns':columns, 'ratio':ratio}
         p.save_config(config)                    
 
-        self.ui.after(0,self.ui.update_screen,self.board)
+        self.ui.after(0, self.ui.update_screen,self.board)
         
     def seed(self):
         ''' 
@@ -92,7 +92,7 @@ class GameOfThrones(object):
         button_text = self.ui.start_button_text
                 
         if button_text.get() == 'Start':
-            self.apply_user_preferences()            
+            # self.apply_user_preferences()            
             self.animate()
             button_text.set('Pause')
         else:
