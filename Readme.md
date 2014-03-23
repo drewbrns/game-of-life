@@ -23,5 +23,5 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 	- Torus of size above 100 x 100 has not been tested, for best performance use torus of size of 60 x 60 and below.	
 
 #To play the game
-	- This game uses only python standard modules
-	- To begin playing, run the script > python run_game.py
+	- This game uses only python standard modules.
+	- To begin playing, run the script > python run_game.py.
