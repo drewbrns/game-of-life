@@ -24,5 +24,5 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 
 #To play the game
 
-	- First install all required modules used by this game onto your system by running this command > pip install -r requirements.txt
+	- This game uses only python standard modules
 	- To begin playing, run the script > python run_game.py

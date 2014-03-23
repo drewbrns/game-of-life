@@ -8,8 +8,6 @@ class Torus(object):
         self.grid = self.populate_grid(ratio)
         
     def populate_grid(self, ratio):
-        # return [[0 for x in xrange(self.rows)] for y in xrange(self.cols)]
-        
         population = [[0 for x in xrange(self.rows)] for y in xrange(self.cols)] 
         k = int(ratio * self.rows)
         
