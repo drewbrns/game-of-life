@@ -17,7 +17,6 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 	- Implement a "next" button that allows the user to step through the simulation at their own pace.
 	- Implement a "previous" button that allows the user to go back to the n (e.g. 10) previous simulation steps.
 	
-	
 ##Known Issues
 	- Only square sized torus (eg. 50 x 50) are currently supported.
 	- Torus of size above 100 x 100 has not been tested, for best performance use torus of size of 60 x 60 and below.	

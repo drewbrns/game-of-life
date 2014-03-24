@@ -44,18 +44,18 @@ class GameOfThrones(object):
 
     def seed(self):
         '''
-        The initial pattern constitutes the seed of the system 
+        The initial pattern constitutes the seed of the system
         '''
         self.board.populate_grid(self.ratio)
 
     def tick(self):
         '''
-        The first generation is created by applying the above rules 
+        The first generation is created by applying the above rules
         simultaneously to every cell in the seed
-        Returns a new grid which results when the rules of the game are 
+        Returns a new grid which results when the rules of the game are
         simultaneously applied to the old grid
         '''
-        old_grid = self.board.grid            
+        old_grid = self.board.grid
         new_grid = self.board.populate_grid(self.ratio)
 
         for y, row in enumerate(old_grid):
@@ -65,7 +65,7 @@ class GameOfThrones(object):
                 should_live = neighbours_alive == 3 or (neighbours_alive == 2 and previous_state == 1)
                 new_grid[y][x] = int(should_live)
 
-        self.board.grid = new_grid       
+        self.board.grid = new_grid
 
     def animate(self):
         self.ui.update_screen(self.board)
@@ -82,7 +82,6 @@ class GameOfThrones(object):
         button_text = self.ui.start_button_text
 
         if button_text.get() == 'Start':
-            # self.apply_user_preferences()            
             self.animate()
             button_text.set('Pause')
         else:
@@ -94,10 +93,10 @@ class GameOfThrones(object):
             Allows the user to stop the game and reset it to it's initial state.
         '''
         button_text = self.ui.start_button_text
-        button_text.set('Start')        
+        button_text.set('Start')
         self.ui.after_cancel(self._appstate)
         self.seed()
-        self.apply_user_preferences()                  
+        self.apply_user_preferences()
 
 
 if __name__ == '__main__':
