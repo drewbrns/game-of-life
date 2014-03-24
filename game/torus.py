@@ -83,6 +83,6 @@ class Torus(object):
         y1 = 0 if y+1 > self.cols-1 else y       
         append(self.grid[y1+1][x1+1])
 
-        count_neighbours_alive = len(filter(lambda x: if x is True, neighbours))
+        count_neighbours_alive = len(filter(lambda x: x == True, neighbours))
 
         return count_neighbours_alive
