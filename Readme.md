@@ -20,7 +20,7 @@ John Conway, a mathematician from Cambridge, invented the “Game of Life” in 
 ##Known Issues
 	- Only square sized torus (eg. 50 x 50) are currently supported.
 	- Torus of size above 100 x 100 has not been tested, for best performance use torus of size of 60 x 60 and below.	
-	- Changing 
+	- State ratio of 100% does not work currently. 
 
 #To play the game
 	- This game uses only python standard modules.
