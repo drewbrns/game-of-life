@@ -3,20 +3,18 @@ import random
 
 
 class Torus(object):
-
     def __init__(self, rows, cols, ratio):
         self._rows = rows
         self._cols = cols
         self.grid = self.populate_grid(ratio)
 
     def populate_grid(self, ratio):
-        population = [[0 for x in xrange(self.rows)] \
-                      for y in xrange(self.cols)]
+        population = [[0 for x in xrange(self.rows)] for y in xrange(self.cols)]
         k = int(ratio * self.rows)
 
         for row in population:
             for _ in xrange(0, k):
-                x = random.randint(0, self.rows-1)
+                x = random.randint(0, self.rows - 1)
                 row[x] = 1
 
         random.shuffle(population)
@@ -43,7 +41,7 @@ class Torus(object):
         return c
 
     def count_neighbours(self, x, y):
-        '''
+        """
             Returns the number of neighbours of a cell which are alive.
 
             Parameters
@@ -52,7 +50,7 @@ class Torus(object):
 
             Returns:
             :count_neighbours_alive ---- number of neighbours alive
-        '''
+        """
         neighbours = []
         append = neighbours.append
 
